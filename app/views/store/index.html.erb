@@ -1,0 +1,15 @@
+<h1>Your Book Catalog</h1>
+
+<% for product in @products -%>
+  <div class="entry">
+    <h3><%=h product.title %></h3>
+    <%= product.description %>
+    <%= product.author %>
+    <div class="price-line">
+      <span class="price"><%= number_to_currency( product.price) %></span>
+      <%= button_to "Add to Cart" %>
+    </div>
+  </div>
+<% end %>
+
+

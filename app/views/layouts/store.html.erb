@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd"
+    >
+<html lang="en">
+<head>
+    <title>Christian Books Online Store</title>
+    <%= stylesheet_link_tag "mybook", :media => "all" %>
+    <%= javascript_include_tag :defaults %>  
+</head>
+
+<body id="store">
+<div id="banner">
+   <%= image_tag("logo.png") %>
+   <%= @page_title || I18n.t('layout.title'%>
+   </div>
+
+   <div id="columns">
+   <div id="side">
+    
+    <% if @cart%>
+        <% hidden_div_if(@cart.items.empty?, :id => "cart") do %>
+        <%= render(partial => "cart", :object => @cart) %>
+    <% end %>
+<% end %>
+
+    
+    <a href= "http://www....."><% I18n.t 'layout.side.home' %></a><br />
+    <a href= "http://www...../faq"><% I18n.t 'layout.side.questions' %></a><br />
+    <a href= "http://www...../news"><% I18n.t 'layout.side.news' %></a><br />
+    <a href= "http://www...../contact"><% I18n.t 'layout.side.contact' %></a><br />
+    
+    <% if session[:user_id] %>
+        <br />
+        <%= link_to 'Orders', :controller => 'orders' %><br />
+        <%= link_to 'Products', :controller => 'products' %><br />
+        <%= link_to 'Users', :controller => 'users' %><br />
+        
+    <% end %>
+   </div>
+   
+   <div id="main">
+    <% if flash [:notice] -%>
+        <div id="notice"><%= flash [notice] %></div>
+    <% end -%>
+    <%= yield :layout %>
+   </div>
+   </div>
+</body>
+</html>

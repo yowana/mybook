@@ -1,0 +1,7 @@
+<h1>People Who Bought</h1>
+<ul>
+  <% for order in @orders -%>
+    <li>
+      <%= mail_to order.email, order.name %>
+    </li>
+</ul>
